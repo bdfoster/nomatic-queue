@@ -1,7 +1,7 @@
 {
   "name": "nomatic-queue",
   "version": "0.0.0",
-  "description": "",
+  "description": "Collection of queues, written with TypeScript.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
