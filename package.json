@@ -17,7 +17,7 @@
   "author": "Brian D. Foster <bdfoster89@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "@types/chai": "^3.5.2",
+    "@types/chai": "^4.0.0",
     "@types/mocha": "^2.2.41",
     "chai": "^3.5.0",
     "cross-env": "^4.0.0",
