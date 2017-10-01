@@ -1,5 +1,5 @@
 export interface QueueOptions<T> {
-    data?: Array<T>
+    data?: T[];
     [key: string]: any;
 }
 

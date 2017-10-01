@@ -1,33 +1,40 @@
 {
   "name": "nomatic-queue",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "description": "Collection of queues, written with TypeScript.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "compile": "tsc",
-    "test": "cross-env NODE_ENV=test nyc mocha",
-    "coverage": "nyc report --reporter=html",
+    "build": "npm run clean && tsc",
+    "clean": "rm -rf src/**/*.js src/**/*.d.ts src/**/*.js.map src/*.js src/*.d.ts src/*.js.map",
+    "lint": "tslint -c tslint.json --project tsconfig.json",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "rm -rf coverage/ && cross-env NODE_ENV=test nyc mocha --reporter spec",
+    "test:ci": "NODE_ENV=ci nyc mocha --reporter spec",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "docs": "typedoc --out ./docs/ --module commonjs --name nomatic-queue --hideGenerator --mode file --excludeExternals --excludePrivate ./src"
-  },
-  "directories": {
-    "test": "test"
+    "docs": "rm -rf docs/ && typedoc --out ./docs/ --module commonjs --name nomatic-queue --hideGenerator --mode file --excludeExternals --excludePrivate --includeDeclarations ./src",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "author": "Brian D. Foster <bdfoster89@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/chai": "^3.5.2",
-    "@types/mocha": "^2.2.41",
+    "@types/mocha": "^2.2.43",
     "chai": "^3.5.0",
     "cross-env": "^4.0.0",
-    "mocha": "^3.3.0",
-    "nyc": "^10.3.0",
-    "source-map-support": "^0.4.15",
-    "ts-node": "^3.0.2",
-    "typescript": "^2.3.2"
+    "mocha": "^3.5.3",
+    "nyc": "^10.3.2",
+    "semantic-release": "^8.0.3",
+    "source-map-support": "^0.4.18",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.3"
   },
   "dependencies": {
     "lodash.get": "^4.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bdfoster/nomatic-queue.git"
   }
 }

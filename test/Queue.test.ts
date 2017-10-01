@@ -1,6 +1,6 @@
 import 'mocha';
 import {expect} from 'chai';
-import {Queue} from '../../src';
+import {Queue} from '../src';
 
 describe('Queue', () => {
     describe('#constructor()', () => {

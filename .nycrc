@@ -1,28 +1,19 @@
 {
-  "watermarks": {
-    "lines": [80, 95],
-    "functions": [80, 95],
-    "branches": [80, 95],
-    "statements": [80, 95]
-  },
-  "exclude": [
-    "node_modules",
-    "coverage",
-    "examples",
-    ".nyc_output",
-    ".git",
-    "test",
-    "dist",
-    "docs"
-  ],
   "extension": [
     ".ts",
     ".tsx"
   ],
+  "exclude": [
+    "**/*.d.ts",
+    "test",
+    "node_modules",
+    "scripts",
+    "docs"
+  ],
   "reporter": [
+    "html",
     "text-summary"
   ],
   "produce-source-map": true,
-  "instrument": true,
   "all": true
 }

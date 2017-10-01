@@ -1,6 +1,6 @@
 import 'mocha';
 import {expect} from 'chai';
-import {PriorityQueue} from '../../src';
+import {PriorityQueue} from '../src';
 
 describe('PriorityQueue', () => {
     let instance;

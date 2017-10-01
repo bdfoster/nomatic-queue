@@ -1,13 +1,13 @@
-import Queue, {QueueOptions} from './Queue';
 import * as get from 'lodash.get';
+import Queue, {QueueOptions} from './Queue';
+
+export type PriorityQueueCompareFunction<T> = (a: T, b: T) => -1 | 1 | 0;
 
 export interface PriorityQueueOptions<T> extends QueueOptions<T> {
-    compare?: ((a: T, b: T) => number) | string | Array<string | number>;
+    compare?: PriorityQueueCompareFunction<T> | (string | number)[] | string;
 }
 
 export class PriorityQueue<T> extends Queue<T> {
-    public compare: (a: T, b: T) => number;
-
     constructor(options: PriorityQueueOptions<T> = {}) {
         super(options);
 
@@ -16,16 +16,23 @@ export class PriorityQueue<T> extends Queue<T> {
                 this.compare = options.compare;
             } else {
                 const compareKey = options.compare;
-                this.compare = (a: T, b: T) => {
+                this.compare = (a, b) => {
                     a = get(a, compareKey);
                     b = get(b, compareKey);
+
                     return a < b ? -1 : a > b ? 1 : 0;
                 };
             }
         }
+
+
     }
 
-    public push(...items: Array<T>) {
+    public compare(a: T, b: T) {
+        return a < b ? -1 : a > b ? 1 : 0;
+    }
+
+    public push(...items: T[]) {
         const result = super.push(...items);
         this.sort(this.compare);
         return result;
